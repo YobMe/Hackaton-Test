@@ -1,35 +1,17 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import { useNavigation } from '@react-navigation/native';
-import Category from '../components/Category';
-
-import type {
-    CompositeNavigationProp,
-    RouteProp,
-  } from '@react-navigation/native';
+import { useSavedData } from '../hooks/useSavedData';
+import { useSelector } from 'react-redux';
 
 type Props = {}
-
-const categories: any = [
-    {
-        'Car': {
-            coror: 'red',
-            brand: 'Tesla'
-        }
-    },
-    {
-        'TV': {
-            'weight': '32kg',
-            'isNew': true,
-            'age': 5
-        }
-    }
-];
 
 
 const CustomDrawer = (props: Props) => {
     const navigation = useNavigation();
+    useSavedData();
+    const { categories } = useSelector((state:any) => state.category);
 
     const handlePress = () => {   
         navigation.navigate("Category");
@@ -38,7 +20,9 @@ const CustomDrawer = (props: Props) => {
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView>
-              {categories.map((item:any,index:any) => <DrawerItem key={index} label={Object.keys(item)[0].toString()} onPress={() => { }} /> )}
+            {categories.map((item:any,index:any) => <DrawerItem key={index} label={item} onPress={() => { 
+                navigation.navigate("ItemView",{item})
+            }} /> )}
               <DrawerItem label='Category' onPress={handlePress} />
             </DrawerContentScrollView>
             <View>

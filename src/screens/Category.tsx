@@ -1,40 +1,19 @@
 import React from 'react'
 import { View, ScrollView, StyleSheet, Image } from 'react-native'
 import { Input, Text, Card, Button, Icon } from '@rneui/themed';
-import AddCategory from './AddCategory';
+import AddCategory from '../components/AddCategory';
 
 type Props = {}
 
-
-const handleChange = ():void => {
-  console.log('12345');
-  
-}
  
 const Category = (props: Props) => {
   return (
     <>
     <ScrollView>
       <View style={styles.container}>
-        <Card containerStyle={{ marginTop: 15 }}>
-          <Card.Title>FONTS</Card.Title>
-          <Card.Divider />
-          <Text style={styles.fonts} h1>
-            h1 Heading
-          </Text>
-          <Text style={styles.fonts} h2>
-            h2 Heading
-          </Text>
-          <Text style={styles.fonts} h3>
-            h3 Heading
-          </Text>
-          <Text style={styles.fonts} h4>
-            h4 Heading
-          </Text>
-          <Text style={styles.fonts}>Normal Text</Text>
-        </Card>
 
         <AddCategory />
+        
         
       </View>
     </ScrollView>
